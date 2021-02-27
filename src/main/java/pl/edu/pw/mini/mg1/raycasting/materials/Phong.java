@@ -1,14 +1,20 @@
 package pl.edu.pw.mini.mg1.raycasting.materials;
 
 import javafx.scene.paint.Color;
+import pl.edu.pw.mini.mg1.raycasting.cameras.Camera;
 import pl.edu.pw.mini.mg1.raycasting.rays.HitInfo;
 
+import java.util.function.Consumer;
+import java.util.function.Supplier;
+
 public class Phong implements Material {
+    Supplier<Camera> camera;
     private Color objectColor;
     private Color lightColor;
     private double exponent;
 
-    public Phong() {
+    public Phong(Supplier<Camera> camera) {
+        this.camera = camera;
         objectColor = Color.YELLOW;
         lightColor = Color.WHITE;
     }

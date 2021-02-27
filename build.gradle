@@ -35,5 +35,5 @@ jar {
 javafx {
     version = '15.0.1'
     modules = [ 'javafx.base', 'javafx.graphics', 'javafx.controls', 'javafx.swing', 'javafx.fxml' ]
-    mainClassName = 'pl.edu.pw.mini.mg1.MainPanel'
+    mainClassName = 'pl.edu.pw.mini.mg1.App'
 }

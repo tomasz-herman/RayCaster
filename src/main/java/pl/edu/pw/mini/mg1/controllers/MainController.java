@@ -14,6 +14,7 @@ import org.joml.Vector3d;
 import pl.edu.pw.mini.mg1.raycasting.cameras.Camera;
 import pl.edu.pw.mini.mg1.raycasting.cameras.OrthographicCamera;
 import pl.edu.pw.mini.mg1.raycasting.cameras.PerspectiveCamera;
+import pl.edu.pw.mini.mg1.raycasting.materials.Dummy;
 import pl.edu.pw.mini.mg1.raycasting.materials.Phong;
 import pl.edu.pw.mini.mg1.raycasting.objects.Model;
 import pl.edu.pw.mini.mg1.raycasting.objects.Sphere;
@@ -32,9 +33,9 @@ public class MainController {
     private final AtomicBoolean rerender = new AtomicBoolean(true);
     private final Semaphore semaphore = new Semaphore(0);
 
-    private final Phong phong = new Phong();
+    private final Phong phong = new Phong(this::getCamera);
     private final Model sphere = new Sphere()
-            .setMaterial(phong);
+            .setMaterial(new Dummy());
     private final Scene scene = new Scene(sphere);
     private Camera camera = new PerspectiveCamera(
             new Vector3d(-5, 0, 0),

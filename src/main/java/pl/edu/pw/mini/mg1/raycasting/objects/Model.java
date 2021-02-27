@@ -2,12 +2,12 @@ package pl.edu.pw.mini.mg1.raycasting.objects;
 
 import org.joml.Matrix4d;
 import org.joml.Vector3d;
+import pl.edu.pw.mini.mg1.raycasting.materials.Dummy;
 import pl.edu.pw.mini.mg1.raycasting.materials.Material;
-import pl.edu.pw.mini.mg1.raycasting.materials.Phong;
 import pl.edu.pw.mini.mg1.raycasting.rays.Hittable;
 
 public abstract class Model implements Hittable {
-    private Material material = new Phong();
+    private Material material = new Dummy();
 
     protected Matrix4d transformation = new Matrix4d();
     protected Matrix4d invTransformation = new Matrix4d();
