@@ -1,0 +1,39 @@
+plugins {
+    id 'java'
+    id 'application'
+    id 'org.openjfx.javafxplugin' version '0.0.9'
+    id 'org.beryx.runtime' version '1.12.1'
+}
+
+group 'pl.edu.pw.mini.mg1'
+version '1.0-SNAPSHOT'
+sourceCompatibility = '15.0.1'
+targetCompatibility = '15.0.1'
+
+repositories {
+    mavenCentral()
+    maven {
+        url "https://oss.sonatype.org/content/repositories/snapshots/"
+    }
+}
+
+dependencies {
+    compile "org.joml:joml:1.10.0"
+}
+
+mainClassName = 'pl.edu.pw.mini.mg1.Main'
+
+jar {
+    manifest {
+        attributes 'Main-Class': mainClassName
+    }
+    from {
+        configurations.compile.collect { it.isDirectory() ? it : zipTree(it) }
+    }
+}
+
+javafx {
+    version = '15.0.1'
+    modules = [ 'javafx.base', 'javafx.graphics', 'javafx.controls', 'javafx.swing', 'javafx.fxml' ]
+    mainClassName = 'pl.edu.pw.mini.mg1.MainPanel'
+}

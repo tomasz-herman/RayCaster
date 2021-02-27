@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.canvas.Canvas?>
+<?import javafx.scene.control.ColorPicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.RadioButton?>
+<?import javafx.scene.control.Slider?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.paint.Color?>
+<?import javafx.scene.text.Font?>
+
+
+<BorderPane prefHeight="720.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pl.edu.pw.mini.mg1.controllers.MainController">
+   <center>
+      <Pane fx:id="canvasPane" prefHeight="500.0" prefWidth="500.0" BorderPane.alignment="CENTER">
+         <Canvas fx:id="canvas" height="500.0" width="500.0"/>
+      </Pane>
+   </center>
+   <right>
+      <VBox fx:id="sidePane" maxWidth="180.0" minWidth="180.0" prefHeight="800.0" prefWidth="180.0" spacing="10.0"
+            BorderPane.alignment="CENTER">
+         <padding>
+            <Insets bottom="5.0" left="5.0" right="5.0" top="5.0"/>
+         </padding>
+         <Label text="Camera">
+            <font>
+               <Font size="16.0"/>
+            </font>
+         </Label>
+         <RadioButton fx:id="orthographicCamera" mnemonicParsing="false" text="Orthographic"/>
+         <RadioButton fx:id="perspectiveCamera" mnemonicParsing="false" selected="true" text="Perspective"/>
+         <Label text="Light Color">
+            <font>
+               <Font size="16.0"/>
+            </font>
+         </Label>
+         <ColorPicker fx:id="lightColor"/>
+         <Label contentDisplay="RIGHT" text="e">
+            <graphic>
+               <Slider fx:id="lightExponent" max="360.0"/>
+            </graphic>
+         </Label>
+         <Label text="Object Color">
+            <font>
+               <Font size="16.0"/>
+            </font>
+         </Label>
+         <ColorPicker fx:id="objectColor">
+            <value>
+               <Color red="1.0" green="1.0"/>
+            </value>
+         </ColorPicker>
+         <Label text="Object Scale">
+            <font>
+               <Font size="16.0"/>
+            </font>
+         </Label>
+         <Label contentDisplay="RIGHT" text="x">
+            <graphic>
+               <Slider fx:id="scaleX" blockIncrement="1.0" max="10.0" min="0.01" value="1.0"/>
+            </graphic>
+         </Label>
+         <Label contentDisplay="RIGHT" text="y">
+            <graphic>
+               <Slider fx:id="scaleY" blockIncrement="1.0" max="10.0" min="0.01" value="1.0"/>
+            </graphic>
+         </Label>
+         <Label contentDisplay="RIGHT" text="z">
+            <graphic>
+               <Slider fx:id="scaleZ" blockIncrement="1.0" max="10.0" min="0.01" value="1.0"/>
+            </graphic>
+         </Label>
+         <Label text="Object Rotation">
+            <font>
+               <Font size="16.0"/>
+            </font>
+         </Label>
+         <Label contentDisplay="RIGHT" text="x">
+            <graphic>
+               <Slider fx:id="rotationX" max="360.0"/>
+            </graphic>
+         </Label>
+         <Label contentDisplay="RIGHT" text="y">
+            <graphic>
+               <Slider fx:id="rotationY" max="360.0"/>
+            </graphic>
+         </Label>
+         <Label contentDisplay="RIGHT" text="z">
+            <graphic>
+               <Slider fx:id="rotationZ" blockIncrement="1.0" max="360.0"/>
+            </graphic>
+         </Label>
+         <Label text="Object Position">
+            <font>
+               <Font size="16.0"/>
+            </font>
+         </Label>
+         <Label contentDisplay="RIGHT" text="x">
+            <graphic>
+               <Slider fx:id="positionX" blockIncrement="0.1" max="10.0" min="-10.0"/>
+            </graphic>
+         </Label>
+         <Label contentDisplay="RIGHT" text="y">
+            <graphic>
+               <Slider fx:id="positionY" blockIncrement="0.1" max="10.0" min="-10.0"/>
+            </graphic>
+         </Label>
+         <Label contentDisplay="RIGHT" text="z">
+            <graphic>
+               <Slider fx:id="positionZ" blockIncrement="0.1" max="10.0" min="-10.0"/>
+            </graphic>
+         </Label>
+         <Label text="Adaptive Levels">
+            <font>
+               <Font size="16.0"/>
+            </font>
+         </Label>
+         <Label contentDisplay="RIGHT" text=" ">
+            <graphic>
+               <Slider fx:id="adaptiveLevels" blockIncrement="1.0" majorTickUnit="1.0" max="8.0" minorTickCount="0"
+                       showTickLabels="true" showTickMarks="true" snapToTicks="true" value="5.0"/>
+            </graphic>
+         </Label>
+      </VBox>
+   </right>
+</BorderPane>
