@@ -20,16 +20,25 @@ public class MouseScrollController implements EventHandler<ScrollEvent> {
 
     @Override
     public void handle(ScrollEvent event) {
-        if(camera.get() instanceof OrthographicCamera) {
-            double size = ((OrthographicCamera) camera.get()).getSize();
+        Camera cam = camera.get();
+        if(cam instanceof OrthographicCamera) {
+            double size = ((OrthographicCamera) cam).getSize();
             size = Math.max(0.01, size - event.getDeltaY() * sensitivity);
-            ((OrthographicCamera) camera.get()).setSize(size);
+            ((OrthographicCamera) cam).setSize(size);
         } else if(camera.get() instanceof PerspectiveCamera) {
-            double fov = ((PerspectiveCamera) camera.get()).getFov();
+            double fov = ((PerspectiveCamera) cam).getFov();
             fov = Math.min(90, Math.max(15, fov - event.getDeltaY() * sensitivity * 10));
-            ((PerspectiveCamera) camera.get()).setFov(fov);
+            ((PerspectiveCamera) cam).setFov(fov);
         }
 
         rerender.run();
+    }
+
+    public double getSensitivity() {
+        return sensitivity;
+    }
+
+    public void setSensitivity(double sensitivity) {
+        this.sensitivity = sensitivity;
     }
 }
