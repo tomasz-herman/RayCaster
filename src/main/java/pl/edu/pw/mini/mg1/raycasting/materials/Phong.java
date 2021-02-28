@@ -1,14 +1,14 @@
 package pl.edu.pw.mini.mg1.raycasting.materials;
 
 import javafx.scene.paint.Color;
+import org.joml.Vector3d;
 import pl.edu.pw.mini.mg1.raycasting.cameras.Camera;
 import pl.edu.pw.mini.mg1.raycasting.rays.HitInfo;
 
-import java.util.function.Consumer;
 import java.util.function.Supplier;
 
 public class Phong implements Material {
-    Supplier<Camera> camera;
+    private final Supplier<Camera> camera;
     private Color objectColor;
     private Color lightColor;
     private double exponent;
@@ -21,10 +21,19 @@ public class Phong implements Material {
 
     @Override
     public Color shade(HitInfo hit) {
-//        return objectColor;
-        return Color.color(Math.max(hit.normal.y, 0), 0, 0);
+        Vector3d cameraPos = camera.get().getPosition();
+        Vector3d position = hit.hitpoint;
+        Vector3d normal = hit.normal;
+        Vector3d toCamera = cameraPos.sub(position, new Vector3d()).normalize();
+        double specular = normal.dot(toCamera);
+        if(specular < 0) return Color.BLACK;
+        specular = Math.pow(specular, exponent);
+        return Color.color(
+                objectColor.getRed() * lightColor.getRed() * specular,
+                objectColor.getGreen() * lightColor.getGreen() * specular,
+                objectColor.getBlue() * lightColor.getBlue() * specular
+        );
     }
-
 
     public Color getObjectColor() {
         return objectColor;

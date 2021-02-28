@@ -35,7 +35,7 @@ public class MainController {
 
     private final Phong phong = new Phong(this::getCamera);
     private final Model sphere = new Sphere()
-            .setMaterial(new Dummy());
+            .setMaterial(phong);
     private final Scene scene = new Scene(sphere);
     private Camera camera = new PerspectiveCamera(
             new Vector3d(-5, 0, 0),
@@ -138,7 +138,7 @@ public class MainController {
         });
 
         lightExponent.valueProperty().addListener((observable, oldValue, newValue) -> {
-            phong.setExponent((double)newValue);
+            phong.setExponent(Math.sqrt((double)newValue));
             requestRender();
         });
     }
