@@ -11,7 +11,7 @@ public class Phong implements Material {
     private final Supplier<Camera> camera;
     private Color objectColor;
     private Color lightColor;
-    private double exponent;
+    private double exponent = 1;
 
     public Phong(Supplier<Camera> camera) {
         this.camera = camera;
