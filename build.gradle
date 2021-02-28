@@ -18,7 +18,7 @@ repositories {
 }
 
 dependencies {
-    compile "org.joml:joml:1.10.0"
+    implementation "org.joml:joml:1.10.0"
 }
 
 mainClassName = 'pl.edu.pw.mini.mg1.Main'
@@ -28,8 +28,9 @@ jar {
         attributes 'Main-Class': 'pl.edu.pw.mini.mg1.Main'
     }
     from {
-        configurations.compile.collect { it.isDirectory() ? it : zipTree(it) }
+        configurations.runtimeClasspath.collect { it.isDirectory() ? it : zipTree(it)}
     }
+    duplicatesStrategy = DuplicatesStrategy.INCLUDE
 }
 
 javafx {
