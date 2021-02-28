@@ -20,8 +20,8 @@ Mouse scroll zooms in or out.
 
 There are two options for a camera orthographic and perspective.  
 Model and Light color are fully adjustable.  
-Lights exponent might be set from 1 to 100.  
-Ellipsoid scale, rotation and position might be changed.
+Light's exponent might be set from 1 to 100.  
+Ellipsoid scale, rotation and position might be changed.  
 Rendering is adaptive, by default picture is rendered at 1/32 resolution, 
 then 1/16, 1/8, 1/4, 1/2 and then at full resolution. 
 Number of steps might be chosen from 8 to 0(render at full resolution instantly) 
