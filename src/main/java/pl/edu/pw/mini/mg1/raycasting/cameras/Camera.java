@@ -4,6 +4,8 @@ import org.joml.Vector3d;
 import pl.edu.pw.mini.mg1.raycasting.rays.Ray;
 
 public abstract class Camera {
+    public static final Vector3d UP_VEC = new Vector3d(0, 1, 0);
+
     private Vector3d position;
     private Vector3d rotation; // pitch, yaw, roll
 
@@ -40,10 +42,10 @@ public abstract class Camera {
     }
 
     public void move(double dx, double dy, double dz) {
-        position.add(
-                dz * front.x + dy * up.x + dx * right.x,
-                dz * front.y + dy * up.y + dx * right.y,
-                dz * front.z + dy * up.z + dx * right.z);
+        position
+            .add(front.mul(dz, new Vector3d()))
+            .add(up.mul(dy, new Vector3d()))
+            .add(right.mul(dx, new Vector3d()));
         recalculateRayOrigins();
     }
 
@@ -63,8 +65,8 @@ public abstract class Camera {
                 Math.sin(rotation.x),
                 Math.cos(rotation.x) * Math.sin(rotation.y)
         ).normalize();
-        right = new Vector3d(front).cross(new Vector3d(0, 1, 0)).normalize();
-        up = new Vector3d(right).cross(front).normalize();
+        right = front.cross(UP_VEC, new Vector3d()).normalize();
+        up = right.cross(front, new Vector3d()).normalize();
     }
 
     protected abstract void recalculateRayOrigins();

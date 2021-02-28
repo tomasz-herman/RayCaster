@@ -15,11 +15,9 @@ public class PerspectiveCamera extends Camera {
     public Ray getRay(double x, double y) {
         return new Ray(
                 new Vector3d(getPosition()),
-                new Vector3d(
-                        lowerLeft.x + x * horizontal.x + y * vertical.x,
-                        lowerLeft.y + x * horizontal.y + y * vertical.y,
-                        lowerLeft.z + x * horizontal.z + y * vertical.z
-                ).sub(getPosition()));
+                lowerLeft.add(horizontal.mul(x, new Vector3d()), new Vector3d())
+                        .add(vertical.mul(y, new Vector3d()))
+                        .sub(getPosition()));
     }
 
     @Override
@@ -27,9 +25,11 @@ public class PerspectiveCamera extends Camera {
         double height = 2.0 * Math.tan(Math.toRadians(fov) / 2.0);
         double width = height * getAspect();
 
-        horizontal = new Vector3d(right).mul(width);
-        vertical = new Vector3d(up).mul(height);
-        lowerLeft = new Vector3d(getPosition()).sub(new Vector3d(horizontal).add(vertical).div(2)).add(front);
+        horizontal = right.mul(width, new Vector3d());
+        vertical = up.mul(height, new Vector3d());
+        lowerLeft = getPosition()
+                .sub(horizontal.add(vertical, new Vector3d())
+                        .div(2), new Vector3d()).add(front);
     }
 
     public double getFov() {

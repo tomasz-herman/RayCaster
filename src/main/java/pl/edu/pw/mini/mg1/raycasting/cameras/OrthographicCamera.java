@@ -15,11 +15,8 @@ public class OrthographicCamera extends Camera {
     @Override
     public Ray getRay(double x, double y) {
         return new Ray(
-                new Vector3d(
-                        lowerLeft.x + x * horizontal.x + y * vertical.x,
-                        lowerLeft.y + x * horizontal.y + y * vertical.y,
-                        lowerLeft.z + x * horizontal.z + y * vertical.z
-                ),
+                lowerLeft.add(horizontal.mul(x, new Vector3d()), new Vector3d())
+                        .add(vertical.mul(y, new Vector3d())),
                 new Vector3d(front));
     }
 
@@ -28,9 +25,10 @@ public class OrthographicCamera extends Camera {
         double width = size;
         double height = width / getAspect();
 
-        horizontal = new Vector3d(right).mul(width);
-        vertical = new Vector3d(up).mul(height);
-        lowerLeft = new Vector3d(getPosition()).sub(new Vector3d(horizontal).add(vertical).div(2));
+        horizontal = right.mul(width, new Vector3d());
+        vertical = up.mul(height, new Vector3d());
+        lowerLeft = getPosition()
+                .sub(horizontal.add(vertical, new Vector3d()).div(2), new Vector3d());
     }
 
     public double getSize() {

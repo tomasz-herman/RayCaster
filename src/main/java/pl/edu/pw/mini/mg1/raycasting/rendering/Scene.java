@@ -11,7 +11,7 @@ import java.util.List;
 
 public class Scene implements Hittable {
     private Color skyColor = Color.SKYBLUE;
-    private List<Hittable> hittableList = new ArrayList<>();
+    private final List<Hittable> hittableList = new ArrayList<>();
 
     public Scene(Hittable... models) {
         hittableList.addAll(Arrays.asList(models));
