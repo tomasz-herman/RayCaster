@@ -6,7 +6,7 @@ plugins {
 }
 
 group 'pl.edu.pw.mini.mg1'
-version '1.0.0'
+version '1.1.0'
 sourceCompatibility = '15.0.1'
 targetCompatibility = '15.0.1'
 
@@ -21,7 +21,9 @@ dependencies {
     implementation "org.joml:joml:1.10.0"
 }
 
-mainClassName = 'pl.edu.pw.mini.mg1.Main'
+application {
+    mainClass = 'pl.edu.pw.mini.mg1.Main'
+}
 
 jar {
     manifest {
