@@ -1,7 +1,9 @@
 package pl.edu.pw.mini.mg1.raycasting.objects;
 
+import org.joml.Matrix4d;
 import org.joml.Vector3d;
 import pl.edu.pw.mini.mg1.raycasting.rays.HitInfo;
+import pl.edu.pw.mini.mg1.raycasting.rays.Hittable;
 import pl.edu.pw.mini.mg1.raycasting.rays.Ray;
 
 public class Sphere extends Model {
@@ -41,5 +43,18 @@ public class Sphere extends Model {
         hit.normal.mulTransposeDirection(invTransformation).normalize();
         hit.model = this;
         return true;
+    }
+
+
+    @Override
+    public Hittable copy() {
+        Sphere sphere = new Sphere();
+        sphere.setScale(new Vector3d(getScale()));
+        sphere.setPosition(new Vector3d(getPosition()));
+        sphere.setRotation(new Vector3d(getRotation()));
+        sphere.transformation = new Matrix4d(transformation);
+        sphere.invTransformation = new Matrix4d(invTransformation);
+        sphere.setMaterial(getMaterial().copy());
+        return sphere;
     }
 }

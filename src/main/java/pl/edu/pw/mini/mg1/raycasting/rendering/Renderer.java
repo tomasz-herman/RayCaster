@@ -12,6 +12,8 @@ import java.util.concurrent.CompletableFuture;
 
 public class Renderer {
    public Image render(Scene scene, Camera camera, int width, int height) {
+       final Scene sceneCopy = (Scene) scene.copy();
+       final Camera cameraCopy = camera.copy();
         WritableImage image = new WritableImage(width, height);
         camera.setAspect((double) width / height);
         Parallel.parallelFor(width, (from, to) -> {
@@ -19,8 +21,8 @@ public class Renderer {
                 for (int j = 0; j < height; j++) {
                     double u = (double) i / (width - 1);
                     double v = (double) j / (height - 1);
-                    Ray ray = camera.getRay(u, v);
-                    Color color = shade(ray, scene);
+                    Ray ray = cameraCopy.getRay(u, v);
+                    Color color = shade(ray, sceneCopy);
                     image.getPixelWriter().setColor(i, j, color);
                 }
             }

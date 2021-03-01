@@ -49,4 +49,11 @@ public class Scene implements Hittable {
     public void clear() {
         hittableList.clear();
     }
+
+    @Override
+    public Hittable copy() {
+        Scene scene = new Scene();
+        hittableList.forEach(hittable -> scene.add(hittable.copy()));
+        return scene;
+    }
 }

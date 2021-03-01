@@ -2,8 +2,9 @@ package pl.edu.pw.mini.mg1.raycasting.cameras;
 
 import org.joml.Vector3d;
 import pl.edu.pw.mini.mg1.raycasting.rays.Ray;
+import pl.edu.pw.mini.mg1.raycasting.utils.Copyable;
 
-public abstract class Camera {
+public abstract class Camera implements Copyable<Camera> {
     public static final Vector3d UP_VEC = new Vector3d(0, 1, 0);
 
     private Vector3d position;
@@ -74,6 +75,7 @@ public abstract class Camera {
     public Camera copy(Camera other) {
         this.position = new Vector3d(other.position);
         this.rotation = new Vector3d(other.rotation);
+        this.aspect = other.aspect;
         updateOrientation();
         recalculateRayOrigins();
         return this;

@@ -39,4 +39,9 @@ public class PerspectiveCamera extends Camera {
     public void setFov(double fov) {
         this.fov = fov;
     }
+
+    @Override
+    public Camera copy() {
+        return new OrthographicCamera(new Vector3d(), new Vector3d()).copy(this);
+    }
 }

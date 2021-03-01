@@ -58,4 +58,13 @@ public class Phong implements Material {
     public void setExponent(double exponent) {
         this.exponent = exponent;
     }
+
+    @Override
+    public Material copy() {
+        Phong phong = new Phong(camera);
+        phong.lightColor = lightColor;
+        phong.objectColor = objectColor;
+        phong.exponent = exponent;
+        return phong;
+    }
 }

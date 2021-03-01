@@ -12,4 +12,9 @@ public class Dummy implements Material {
                 Math.min(Math.max(hit.normal.z * 0.5 + 0.5, 0), 1)
         );
     }
+
+    @Override
+    public Material copy() {
+        return this;
+    }
 }
