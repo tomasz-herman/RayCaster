@@ -4,6 +4,7 @@ import javafx.scene.image.Image;
 import javafx.scene.image.WritableImage;
 import javafx.scene.paint.Color;
 import pl.edu.pw.mini.mg1.raycasting.cameras.Camera;
+import pl.edu.pw.mini.mg1.raycasting.cameras.PerspectiveCamera;
 import pl.edu.pw.mini.mg1.raycasting.rays.HitInfo;
 import pl.edu.pw.mini.mg1.raycasting.rays.Ray;
 import pl.edu.pw.mini.mg1.raycasting.utils.Parallel;

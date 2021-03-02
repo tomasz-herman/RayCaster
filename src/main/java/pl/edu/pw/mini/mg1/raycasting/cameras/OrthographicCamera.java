@@ -41,6 +41,7 @@ public class OrthographicCamera extends Camera {
 
     @Override
     public Camera copy() {
-        return new OrthographicCamera(new Vector3d(), new Vector3d()).copy(this);
-    }
+        OrthographicCamera camera = (OrthographicCamera) new OrthographicCamera(new Vector3d(), new Vector3d()).copy(this);
+        camera.size = this.size;
+        return this;    }
 }

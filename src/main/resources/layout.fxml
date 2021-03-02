@@ -40,7 +40,7 @@
          <ColorPicker fx:id="lightColor"/>
          <Label contentDisplay="RIGHT" text="e">
             <graphic>
-               <Slider fx:id="lightExponent" min="1" max="10000"/>
+               <Slider fx:id="lightExponent" min="1"/>
             </graphic>
          </Label>
          <Label text="Object Color">

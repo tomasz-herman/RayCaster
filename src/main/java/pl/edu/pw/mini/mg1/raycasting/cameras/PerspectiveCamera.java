@@ -42,6 +42,8 @@ public class PerspectiveCamera extends Camera {
 
     @Override
     public Camera copy() {
-        return new PerspectiveCamera(new Vector3d(), new Vector3d()).copy(this);
+        PerspectiveCamera camera = (PerspectiveCamera) new PerspectiveCamera(new Vector3d(), new Vector3d()).copy(this);
+        camera.fov = this.fov;
+        return this;
     }
 }
