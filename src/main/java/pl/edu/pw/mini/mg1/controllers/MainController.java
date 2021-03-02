@@ -77,7 +77,7 @@ public class MainController {
         ToggleGroup toggle = new ToggleGroup();
         perspectiveCamera.setToggleGroup(toggle);
         orthographicCamera.setToggleGroup(toggle);
-        perspectiveCamera.setUserData(new PerspectiveCamera(new Vector3d(-5, 0, 0), new Vector3d()));
+        perspectiveCamera.setUserData(camera);
         orthographicCamera.setUserData(new OrthographicCamera(new Vector3d(-5, 0, 0), new Vector3d()));
         toggle.selectedToggleProperty().addListener((observable, oldValue, newValue) -> {
             camera = ((Camera)newValue.getUserData()).copy((Camera)oldValue.getUserData());

@@ -11,9 +11,9 @@ import pl.edu.pw.mini.mg1.raycasting.utils.Parallel;
 import java.util.concurrent.CompletableFuture;
 
 public class Renderer {
-   public Image render(Scene scene, Camera camera, int width, int height) {
-       final Scene sceneCopy = (Scene) scene.copy();
-       final Camera cameraCopy = camera.copy();
+    public Image render(Scene scene, Camera camera, int width, int height) {
+        final Scene sceneCopy = (Scene) scene.copy();
+        final Camera cameraCopy = camera.copy();
         WritableImage image = new WritableImage(width, height);
         camera.setAspect((double) width / height);
         Parallel.parallelFor(width, (from, to) -> {
