@@ -3,10 +3,7 @@ package pl.edu.pw.mini.mg1.controllers;
 import javafx.animation.AnimationTimer;
 import javafx.fxml.FXML;
 import javafx.scene.canvas.Canvas;
-import javafx.scene.control.ColorPicker;
-import javafx.scene.control.RadioButton;
-import javafx.scene.control.Slider;
-import javafx.scene.control.ToggleGroup;
+import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
@@ -48,9 +45,9 @@ public class MainController {
     @FXML private ColorPicker lightColor;
     @FXML private ColorPicker objectColor;
 
-    @FXML private Slider scaleX;
-    @FXML private Slider scaleY;
-    @FXML private Slider scaleZ;
+    @FXML private Spinner<Double> scaleX;
+    @FXML private Spinner<Double> scaleY;
+    @FXML private Spinner<Double> scaleZ;
 
     @FXML private Slider rotationX;
     @FXML private Slider rotationY;
@@ -71,6 +68,7 @@ public class MainController {
         bindRadioButtons();
         bindColorPickers();
         bindSliders();
+        bindSpinners();
     }
 
     private void bindRadioButtons() {
@@ -96,20 +94,23 @@ public class MainController {
         });
     }
 
-    private void bindSliders() {
-        adaptiveLevels.valueProperty().addListener((observable, oldValue, newValue) -> adaptive = (int)(double) newValue);
+    private void bindSpinners() {
         scaleX.valueProperty().addListener((observable, oldValue, newValue) -> {
-            sphere.setScale(sphere.getScale().setComponent(0, (double)newValue));
+            sphere.setScale(sphere.getScale().setComponent(0, newValue));
             requestRender();
         });
         scaleY.valueProperty().addListener((observable, oldValue, newValue) -> {
-            sphere.setScale(sphere.getScale().setComponent(1, (double)newValue));
+            sphere.setScale(sphere.getScale().setComponent(1, newValue));
             requestRender();
         });
         scaleZ.valueProperty().addListener((observable, oldValue, newValue) -> {
-            sphere.setScale(sphere.getScale().setComponent(2, (double)newValue));
+            sphere.setScale(sphere.getScale().setComponent(2, newValue));
             requestRender();
         });
+    }
+
+    private void bindSliders() {
+        adaptiveLevels.valueProperty().addListener((observable, oldValue, newValue) -> adaptive = (int)(double) newValue);
 
         rotationX.valueProperty().addListener((observable, oldValue, newValue) -> {
             sphere.setRotation(sphere.getRotation().setComponent(0, Math.toRadians((double)newValue)));
