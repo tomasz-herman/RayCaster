@@ -37,11 +37,13 @@ public class OrthographicCamera extends Camera {
 
     public void setSize(double size) {
         this.size = size;
+        recalculateRayOrigins();
     }
 
     @Override
     public Camera copy() {
         OrthographicCamera camera = (OrthographicCamera) new OrthographicCamera(new Vector3d(), new Vector3d()).copy(this);
-        camera.size = this.size;
-        return this;    }
+        camera.setSize(size);
+        return camera;
+    }
 }

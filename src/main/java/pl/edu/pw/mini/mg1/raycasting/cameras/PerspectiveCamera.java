@@ -38,12 +38,13 @@ public class PerspectiveCamera extends Camera {
 
     public void setFov(double fov) {
         this.fov = fov;
+        recalculateRayOrigins();
     }
 
     @Override
     public Camera copy() {
         PerspectiveCamera camera = (PerspectiveCamera) new PerspectiveCamera(new Vector3d(), new Vector3d()).copy(this);
-        camera.fov = this.fov;
-        return this;
+        camera.setFov(fov);
+        return camera;
     }
 }

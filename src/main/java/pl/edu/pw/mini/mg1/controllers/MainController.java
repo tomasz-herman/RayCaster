@@ -130,7 +130,7 @@ public class MainController {
             requestRender();
         });
         positionY.valueProperty().addListener((observable, oldValue, newValue) -> {
-            sphere.setPosition(sphere.getPosition().setComponent(1, (double)newValue));
+            sphere.setPosition(sphere.getPosition().setComponent(1, -(double)newValue));
             requestRender();
         });
         positionZ.valueProperty().addListener((observable, oldValue, newValue) -> {
